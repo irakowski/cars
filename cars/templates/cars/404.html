@@ -1,0 +1,19 @@
+{% extends 'cars/base.html' %}
+
+{% load static %}
+
+{% block content%}
+    <div class="container mt-5">
+      <div class="row mt-5">
+        <div class="col text-center">
+          <p>
+            Click on the link below to procceed 
+          </p>
+        </div>
+      </div>
+      <div class="text-center mt-5">
+        <a type="button" class="btn btn-primary" href="{% url 'popular' %}">Go to Popular</a>
+      </div>
+    </div>
+    
+{%endblock%}

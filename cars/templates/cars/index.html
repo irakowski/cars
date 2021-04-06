@@ -1,0 +1,44 @@
+{% extends 'cars/base.html' %}
+
+{% block content %}
+<div class="tab-pane active container" id="popular-content" role="tabpanel" aria-labelledby="popular-tab">
+  {% if cars %}
+  <h2 class="text-center py-3">TOP 5 MOST RATED CARS</h2>
+    <div class="row">
+      <div class="card text-center">
+        <div class="card-body">
+          <table class="table table-stripped table-hover">
+            <thead>
+              <th scope="col">#</th>
+              <th>Car</th>
+              <th>Total Rates</th>
+              <th>Average Rating</th>
+            </thead>
+            <tbody>
+              {% for car in cars%}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ car.make }} {{ car.model }}</td>
+                <td>{{ car.rating_set.all.count }}</td>
+                <td>{{ car.get_avg_rating| default_if_none:0 |floatformat }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>      
+    </div>
+    {% else %}
+    <h2 class="text-center py-3"></h2>
+    <div class="row">
+      <div class="card text-center">
+        <div class="card-body">
+          <h4 class="text-center">
+            No cars added
+          </h4>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
